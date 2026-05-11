@@ -1,0 +1,75 @@
+from turtle import *
+import random
+
+setup(20000, 20000)
+
+bgcolor('white')
+speed(0)
+hideturtle()
+
+color('pink')
+
+def tiling(x, y, s, l, mode="straight"):
+    #final level of recursion and now we draw
+    if l == 0:
+
+        if mode == "straight":
+
+            # vertical line
+            if random.random() < 0.5:
+                penup()
+                goto(x, y - s)
+                pendown()
+                goto(x, y + s)
+
+            # horizontal line
+            else:
+                penup()
+                goto(x - s, y)
+                pendown()
+                goto(x + s, y)
+
+        elif mode == "diagonal":
+            #  top left to bottom right
+            if random.random() < 0.5:
+                penup()
+                goto(x - s, y + s)
+                pendown()
+                goto(x + s, y - s)
+
+            # bottom left to top right
+            else:
+                penup()
+                goto(x - s, y - s)
+                pendown()
+                goto(x + s, y + s)
+    #split the screen to reduce the size we are working with
+    else:
+        s /= 2
+        l -= 1
+        tiling(x - s, y + s, s, l, mode)
+        tiling(x + s, y + s, s, l, mode)
+        tiling(x - s, y - s, s, l, mode)
+        tiling(x + s, y - s, s, l, mode)
+
+
+width(3)
+hideturtle()
+tracer(False)
+tiling(0, 0, 400, 6, mode="diagonal")
+tracer(True)
+
+# draw rotating lines
+for i in range(1000):
+    penup()
+    goto(0,0)
+    pendown()
+    right(10)
+    forward(80)
+    backward(1000)
+
+left(10)
+
+
+
+done()
