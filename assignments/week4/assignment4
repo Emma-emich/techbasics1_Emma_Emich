@@ -1,0 +1,37 @@
+#I used AI as a help since the star didn't complete themselves I then used setheading so they have a consistent shape
+from turtle import *
+import random
+
+width = 800
+height = 1000
+setup(width, height)
+
+bgcolor("black")
+
+colors = ["silver", "gold", "grey", "white", "cyan"]
+
+#draw stars
+for i in range(100):
+    penup()
+    goto(random.randint(-400, 400), random.randint(-500, 500))
+    setheading(0)
+    pendown()
+    size = random.randint(10,50)
+    star_color = random.choice(colors)
+
+    if star_color == "gold":
+        pensize(4)
+    else:
+        pensize(1)
+
+    color(star_color)
+    begin_fill()
+    for _ in range(5):
+        forward(size)
+        right(144)
+    end_fill()
+
+
+
+
+
