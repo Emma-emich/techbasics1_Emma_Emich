@@ -1,0 +1,113 @@
+#%%
+#I have used AI for the debugging of my code
+import time
+
+# i defined pizza, pasta, salads and drinks as constants as well as the menu options so the code doesn't have to repeat itself over and over and if needed i could add new options to alter the code
+
+PIZZAS = ["margarita", "salami", "hawaii", "funghi"]
+PASTAS = ["bolognese", "carbonara", "alio e olio", "pesto"]
+SALADS = ["ceasar salad", "tuna salad", "greek salad"]
+DRINKS = ["Water", "Juice", "Smoothies", "Milkshake", "Cola"]
+
+PIZZA_MENU = "margarita, salami, hawaii, funghi"
+PASTA_MENU = "bolognese, carbonara, alio e olio, pesto"
+SALAD_MENU = "ceasar salad, tuna salad, greek salad"
+DRINK_MENU = "Water, Juice, Smoothies, Milkshake, Cola"
+
+#I added three arguments : category for pizza,pasta and salads, options to check if the input is valid and through menu_text the output is shown to the customer/player
+def ask_order(category, options, menu_text):
+    print(f"What kind of {category} would you like to order? We have {menu_text}.")
+    time.sleep(1)
+    choice = input(f"What kind of {category} would you like?")
+    if choice in options:
+        print(f"Great, {category} {choice} has been added to your order.")
+        time.sleep(1)
+        return choice
+    else:
+        print(f"Sorry, please choose again we don't have that type of {category} here.🙁")
+        return None
+
+# this function handles both the check of true and false and returns one of them. The lower()== "yes" function i added with AI
+# since it said it handles both "yes" and "Yes"
+def yes_or_no(question):
+     answer = input(question + "(yes/no)")
+     return answer.lower() == "yes"
+
+#the feedback section is now one own function defined it therefore can't interfere with the main() function below
+def get_feedback():
+     print("Are you satisfied with your order?👍👎")
+     time.sleep(1)
+     print("How satisfied are you with your order from 1-10? We would appreciate some feedback")
+     time.sleep(1)
+
+     feedback = int(input("How satisfied are you with your order from 1-10?"))
+
+     if feedback < 5:
+          print("Thank you, we will take your feedback into consideration and try to make it better next time!")
+          time.sleep(1)
+     elif  5 <= feedback <= 9:
+          print("Thank you for your feedback. we are glad you had a nice experience!☺️")
+          time.sleep(1)
+     elif feedback == 10:
+        print("Thank you so much, we are thrilled you enjoyed our services and hope to see you here again soon!😺")
+     time.sleep(1)
+
+#greeting the customer
+def main():
+
+    print(" 👋 Welcome to Jo's Pizzeria! 👋 ")
+    time.sleep(1)
+    print("🌟Here is our menu 📖:🌟")
+    time.sleep(1)
+    print("We have Pizza 🍕,Pasta 🍝, and Salads 🥗")
+    time.sleep(1)
+
+    #food order
+    order = input("What would you like to order?")
+
+    if order == "Pizza":
+        ask_order("Pizza", PIZZAS, PIZZA_MENU)
+    elif order == "Pasta":
+        ask_order("Pasta", PASTAS, PASTA_MENU)
+    elif order == "Salads":
+        ask_order("Salads", SALADS, SALAD_MENU)
+    else:
+        print("Sorry, we don't have that on the menu.🙁")
+
+    #drink order
+    time.sleep(1)
+    if yes_or_no("Would you like something to drink?🧃"):
+        print(f"We have five sorts of drinks to offer: {DRINK_MENU}")
+        time.sleep(1)
+        drink = input("What would you like to drink?")
+        if drink in DRINKS:
+            print("Good choice!👍We have added it to your order")
+        else:
+            print("Sorry, we don't have that drink here.🙁")
+        time.sleep(1)
+    else:
+        print("Okay, no problem!")
+    #extra orders
+    time.sleep(2)
+    if yes_or_no("Do you wish for anything else?"):
+        print("We also have dessert.🧁 Would you like to order dessert?")
+        time.sleep(1)
+        if yes_or_no("Would you like to order dessert?🧁"):
+            print("We would like to offer you a cheesecake. it has been added to your order")
+            time.sleep(1)
+        else:
+            print("Okay, no problem!")
+    else:
+        print("Okay, no problem!")
+
+    #getting the feedback
+    time.sleep(3)
+    get_feedback()
+
+    #End
+    time.sleep(4)
+    print("Your order is complete. Thank you for ordering at Jo's Pizzeria ♥️! Your order will be on its way soon. Enjoy!")
+
+
+main()
+
