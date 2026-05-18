@@ -1,0 +1,103 @@
+#I have used AI for the debugging of my code
+import time
+
+print(" 👋 Welcome to Jo's Pizzeria! 👋 ")
+time.sleep(1)
+print("🌟Here is our menu 📖:🌟")
+time.sleep(1)
+print("We have Pizza 🍕,Pasta 🍝, and Salads 🥗")
+time.sleep(1)
+
+order = input("What would you like to order? ")
+
+if order == "Pizza":
+    print("What kind of Pizza do you want? We have pizza salami, margarita, hawaii or funghi.")
+    time.sleep(1)
+    pizza = input("What kind of pizza 🍕do you want?")
+    if pizza in  ["margarita", "salami", "hawaii", "funghi"]:
+     print(f"Great, pizza {pizza} has been added to your order.")
+     time.sleep(1)
+    else:
+        print("Sorry, please choose again we don't have that type of pizza here. 🙁")
+
+elif order == "Pasta":
+     print("What kind of pasta do you prefer? We have pasta bolognese, carbonara, alio e olio or pesto")
+     time.sleep(1)
+     pasta = input("What kind of pasta 🍝do you want?")
+     if pasta in ["bolognese", "carbonara", "alio e olio", "pesto"]:
+         print(f"Great, pasta {pasta} has been added to your order.")
+     else:
+         print("Sorry, please choose again we don't have that type of pasta here.🙁")
+elif order == "Salads":
+     print("What kind of Salad would you like? We have ceasar salad, tuna salad or greek salad")
+     time.sleep(1)
+     salad = input("What kind of salad 🥗 do you want?")
+     if salad in ["ceasar salad", "tuna salad", "greek salad"]:
+         print(f"Great, salad {salad} has been added to your order.")
+     else:
+         print("Sorry, please choose again we don't have that type of salad here.🙁")
+else:
+     print("Sorry, we don't have that on the menu.🙁")
+
+#drinks
+time.sleep(1)
+print("Would you like something to drink?🧃")
+time.sleep(1)
+drink_answer = input("Would you like something to drink?🧃(yes/no)")
+if drink_answer == "yes" or drink_answer == "Yes":
+    print("We have five sorts of drinks to offer: Water, Juice, Smoothies, Milkshake or Cola")
+    time.sleep(1)
+    drink = input("What would you like to drink?")
+    if drink in ["Water", "Juice", "Smoothies", "Milkshake", "Cola"]:
+        print("Good choice!👍 We have added it to your order")
+    else:
+        print("Sorry, we don't have that drink here.🙁")
+        time.sleep(1)
+elif drink_answer == "no":
+    print("Okay, no problem!")
+
+#extras
+time.sleep(2)
+print("Do you wish for anything else?")
+time.sleep(1)
+extra = input("Do you wish for anything else? (yes/no)")
+if extra == "yes" or extra == "Yes":
+    print("We also have dessert.🧁 Would you like to order dessert?")
+    time.sleep(1)
+    dessert = input("Would you like to order dessert? 🧁(yes/no)")
+    if dessert == "yes" or dessert == "Yes":
+        print("We would like to offer you a cheesecake. it has been added to your order")
+        time.sleep(1)
+    elif dessert == "no" or dessert == "No":
+           print("Okay, no problem!")
+elif extra == "no" or extra == "No":
+            print("Okay, no problem!")
+
+#feedback
+time.sleep(3)
+print("Are you satisfied with your order?👍👎")
+time.sleep(1)
+print("How satisfied are you with your order from 1-10? We would appreciate some feedback")
+time.sleep(1)
+
+feedback = int(input("How satisfied are you with your order from 1-10?"))
+
+if feedback < 5:
+    print("Thank you, we will take your feedback into consideration and try to make it better next time!")
+    time.sleep(1)
+elif  5 <= feedback <= 9:
+    print("Thank you for your feedback. we are glad you had a nice experience!☺️")
+    time.sleep(1)
+elif feedback == 10:
+    print("Thank you so much, we are thrilled you enjoyed our services and hope to see you here again soon!😺")
+    time.sleep(1)
+
+
+time.sleep(4)
+print("Your order is complete. Thank you for ordering at Jo's Pizzeria ♥️! Your order will be on its way soon. Enjoy!")
+
+
+
+
+
+
