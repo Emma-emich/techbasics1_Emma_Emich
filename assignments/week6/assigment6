@@ -1,0 +1,209 @@
+#%%
+#I have used AI for the debugging of the code and to help with small adjustments such as the variable game_over and the global game_over as well as setting game_over to true to stop the game and letting the while loop run as long as the game_over is false
+import time
+
+#Escape room game
+
+print("You open your eyes and find yourself in a cold and mildly decorated room.")
+time.sleep(1)
+print("Everything is quiet, all you can hear is the ticking of the old clock on the wall.")
+time.sleep(1)
+print("You don't recognize this place.")
+print("As you stand up you find a letter lying on the drawer.")
+time.sleep(2)
+
+# player gets to decide whether to open the letter or not. If they say no the game is over, if they say yes the letter will be opened.
+answer = input("Do you want to open the letter? (yes/no)?")
+
+if answer == "no":
+    print("You have left the letter unopened. Now the castle will never be yours.")
+    print("Game over!")
+    exit()
+time.sleep(2)
+#if the player answers with yes, the letter will be printed
+#opened letter
+print("You carefully open the envelope:")
+print()
+time.sleep(1)
+print("Dear Katherine, ")
+print("I see you have found my letter and must ow be very confused as to why you are here.")
+time.sleep(1)
+print("I have created this small game for you to test your abilities.")
+print("If you find a way to escape you will be deservant of my rich heritage and will inherent this beautiful castle in which you are right now.")
+time.sleep(1)
+print()
+print("But, if you're not able to escape you may never escape, this will seal your fate.")
+print("You have my best wishes. ")
+time.sleep(1)
+print("Sincerely your late uncle Leopold. ")
+
+#the player puts down the letter and scans the room
+print("You put down the letter and slowly scan the room...")
+time.sleep(1)
+
+inventory = []
+MAX_ITEMS = 5 #the limit of how many items the player can carry
+
+#player scans the room --> dictionary of what can be seen in the room and a description that is show to the player once they pick upt the item
+
+items_in_room = [{"name": "cabinet", "type": "storage", "uses":1, "description": "A locked cabinet with a keypad. Enter the code to open it." }, {"name": "door", "type": "exit", "uses": 1, "description": "A heavy locked door. You need to open the door with the key to escape"},]
+
+game_over = False
+
+#the function def show_room_items prints the name of each item for the player
+
+
+def show_room_items():
+    print("\nYou can see:")
+    for item in items_in_room:
+        print(item["name"])
+
+#now the player will look into their inventory and check what they are currently carrying and see that the list is empty so the code will tell the player so
+
+def show_inventory():
+    if not inventory:
+        print("Your inventory is empty.")
+    else:
+        print(f"\nInventory ({len(inventory)}/{MAX_ITEMS}):")# len to show the numbers of items in the list
+        for item in inventory:
+            print(item["name"])
+
+#the player finds the key and this function lets him pick it up. With item_in_room
+# the function will gor through the the list to check if the key is there , if it is
+# we will remove it by using .remove() and add it to the inventory list by using .append()
+def pick_up_key():
+    for item in items_in_room:
+        if item["name"] == "key":
+            inventory.append(item)
+            items_in_room.remove(item)
+            print(f"You picked up the key.")
+            return
+    print(f"there is no key in your room.")
+
+#now drop_key checks if the key is in the inventory and drops it
+def drop_key():
+    for item in inventory:
+        if item["name"] == "key":
+            inventory.remove(item)
+            items_in_room.append(item)
+            print(f"You dropped the key.")
+            return
+    print(f"You don't have a key in your inventory.")
+
+#in this part the player needs to type in a code, if it is correct with key = {} a new dictionary will be created and it will be added to items_in_room and the player can pick it up then
+def examine_cabinet():
+    cabinet_found = False
+    for item in items_in_room:
+            if item["name"] == "cabinet":
+                cabinet_found = True
+                if item["uses"] > 0:
+                    print("There is a keypad lock at the cabinet.")
+                    time.sleep(1)
+                    print("You have to type in a code to open the cabinet.")
+                    time.sleep(1)
+                    code = input("Enter the code to open the cabinet: (Hint: it's the first four numbers that exist. ;))")
+                    if code == "1234":
+                        print("The lock opens and inside the cabinet you find an old metal key.")
+                        key = {"name":"key","type":"tool", "uses":1, "description": "A small old metal key."}
+                        items_in_room.append(key)
+                        item["uses"]= 0 #set to 0 so the cabinet can only be opened once with the correct code through the right code in the lock
+                        print("The key is now in the room. Go back to the menu and select 'pickup key' to pick the key up.")
+                    else:
+                        print("Wrong code. The cabinet stays closed")
+                else:
+                    print("The cabinet is already open.")
+    if not cabinet_found:
+                print("There is no cabinet in your room.")
+
+time.sleep(1)
+print()
+print("You examine the door. It's a heavy wooden door with a lock, your only way to escape and you need the key to open it")
+time.sleep(1)
+#now the player gets to use the key to open the door with use_key and escape, it checks if the key is in the inventory and ends the game if it is so
+def use_key():
+    global game_over
+    key_in_inventory = False
+    for item in inventory:
+        if item["name"] == "key":
+            key_in_inventory = True
+    if key_in_inventory:
+        print("\nYou put the key in the lock of the big wooden door and... *click*")
+        print("The door slightly opens with a loud squeak. You step outside into a dar corridor inside your uncles castle.")
+        print("\n You have escaped! you win, congratulations!")
+        game_over = True
+        return
+    else:
+        print("You don't have a key in your inventory")
+
+print("What do you want to do first?")
+time.sleep(1)
+print("1. Walk to the cabinet?")
+time.sleep(1)
+print("2. Try to open the door?")
+time.sleep(1)
+print("3. Look around again?")
+time.sleep(1)
+
+choice = input("Type 1,2 or 3:")
+
+if choice == "1":
+    print("You walk towards the cabinet and see that it has a keypad lock on it.")
+    print("You need to find a code to open it.")
+    time.sleep(1)
+    print("What do you want to do?")
+    time.sleep(1)
+    print("1. Examine cabinet?")
+    time.sleep(1)
+    print("2. Look around the room?")
+    time.sleep(1)
+    second_choice = input("Type 1 or 2:")
+    if second_choice == "1":
+        examine_cabinet()
+    elif second_choice == "2":
+        show_room_items()
+        print("After looking around, you turn back to the cabinet.")
+        time.sleep(1)
+        print("Type 'examine cabinet' if you want to take a closer look.")
+    else:
+        print("You look around unsure what to do-" )
+        time.sleep(1)
+
+elif choice == "2":
+    print("As you walk to the door, you try to push against it but it doesn't budge.")
+    time.sleep(1)
+    print("It's locked, you need to find some sort of key to open it.")
+    time.sleep(1)
+    print("Try looking at the cabinet. If you want to do that type 'examine cabinet'.")
+
+elif choice == "3":
+    show_room_items()
+    print("You then notice the cabinet, it looks odd and somehow locked. Type 'examine cabinet' if you want to take a closer look.")
+else:
+    print("you stand still for a moment, unsure what to do. You can type 'look' if you want to look around more.")
+
+print("(Hint: type 'pickup key' or 'examine cabinet' to explore further.) ")
+time.sleep(1)
+
+while not game_over:
+    command = input("What do you want to do now? Your options: 'look', 'inventory', 'examine cabinet', 'pickup key', 'drop key', 'use key', 'quit'. ")
+
+    if command == "look":
+        show_room_items()
+    elif command == "inventory":
+        show_inventory()
+    elif command =="examine cabinet":
+        examine_cabinet()
+    elif command =="pickup key":
+        pick_up_key()
+    elif command == "drop key":
+        drop_key()
+    elif command == "use key":
+        use_key()
+    elif command == "quit":
+        print("You give up. Game over.")
+        break
+    else:
+        print("Unknown command. Try: look, examine_cabinet, pickup_key,drop_key, use_key, inventory")
+
+
+
