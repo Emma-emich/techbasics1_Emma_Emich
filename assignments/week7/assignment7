@@ -1,0 +1,54 @@
+import time
+
+DEBUG = True
+name = input("Please enter your name: ")
+timestamp = input("What's today's date?")
+#asking the player for input
+if DEBUG :
+    print("The DEBUG mode is on, so the pizzeria game will be skipped for the purpose of the assignment.")
+    score = 7
+    time.sleep(1)
+else:
+    try:
+        score = int(input("Please rate your experience from 1-10:"))
+    except ValueError:
+        print("Seems like this didn't work, setting the score to 0.")
+        score = 0
+#a name, date and score will be saved in the records
+try:  
+    with open("pizzeria_records.txt", "a") as f:#a adds a new line every time
+        f.write(f"{name}, {timestamp}, {score}\n") #n at the end to start a new line
+    print("The record is saved now!")
+    time.sleep(1)
+except Exception as e:
+    print(f"The record couldn't be saved: {e}")
+
+#leaderboard is revealed 
+print("Now it's time to reveal the leaderboard:")
+time.sleep(1)
+
+try:
+    records = []
+    with open("pizzeria_records.txt", "r") as f:
+        for line in f:
+            line = line.strip()
+            if line:
+                parts = line.split(",")#cuts the line every time so it looks more like a list at evry comma 
+                if len(parts) == 3:
+                    records.append({
+                        "name": parts[0].strip(),
+                        "timestamp": parts[1].strip(),
+                        "score": int(parts[2].strip())
+                    })
+    counter = 1
+    for record in records:
+        print(f"{counter}. {record['name']} - Score: {record['score']} - {record['timestamp']}")
+        counter += 1
+
+
+except FileNotFoundError:
+    print("There were no records found yet.")
+except ValueError as e:
+    print(f"The record could not be read: {e}")
+except Exception as e:
+    print(f"Something went wrong: {e}")
