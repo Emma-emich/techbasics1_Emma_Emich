@@ -1,0 +1,47 @@
+### Assignment 11: Read Some Code
+
+
+1. Where did you find the code and why did you choose it?
+
+Link: https://github.com/harshvardhan60792/hangman (file: hangman.py)
+I wanted to find a code  that uses ASCII art, since I’m also planning to use it in my final assignment. I found this one on GitHub and picked it because it looked simple enough for me to actually understand, and it's 145 lines long, so it's not too short but perfect for an analysis.
+2. What does the program do? General structure?
+
+It's a Hangman game you play in the terminal. You type in a difficulty (either easy, medium, or hard), the game then secretly picks a random word, and then you try to guess it one letter at a time, same to how it normally is played. Every time you guess wrong, you lose a life and a new part of the hangman drawing shows up.
+Going through the file from top to bottom, this is what's in it:
+
+First it imports some stuff it needs (random, json, os) and loads a list of words from a separate file called wordlist.json.
+Then it asks you to pick a difficulty.
+Then there's a big chunk of text art — a fancy hangman logo made out of letters, and a list of 7 different ASCII drawings (the gallows with more and more of a stick figure added).
+After that it picks a random word and makes a line of underscores, one for each letter in the word.
+Then the actual game runs in a big loop that keeps asking you to guess letters until you win or lose.
+
+3. Function analysis
+
+I looked through the whole file and honestly... I couldn’t find any functions in it at all! Everything just runs straight down the file using loops and if-statements. So instead I picked the main game loop to break down, since that's the part that actually runs the game.
+What it does: It keeps asking the player to guess letters, over and over, until they either win or run out of lives and lose.
+Input: every time it loops, it asks you to type a letter. 
+Output: it doesn't return anything since it's not a function — it just prints stuff on the screen each round (how many lives you have left, the word so far, and the hangman drawing).
+So basically this is what happens every loop: 
+It checks while not game_over —> basically "keep going as long as the game isn't finished yet."
+It shows how many lives are left and asks you to type a letter.
+If you already guessed that letter before, it tells you and skips ahead to the next round.
+It rebuilds the whole word display from scratch —> going through every letter in the secret word and either showing the real letter (if you guessed it) or an underscore.
+If your letter isn't in the word at all, you lose a life. If you hit 0 lives, the game ends and you lose.
+If there are no more underscores left, you guessed the whole word, so the game ends and you win.
+At the very end of each round, it prints the matching hangman picture based on how many lives you have left.
+
+4. Takeaways
+
+Keep your data separate from your game logic. The list of words is in its own file (wordlist.json), not typed directly into the game code. That way you could add more words without ever touching the actual game.
+You can store "pictures" as just a list of strings. Instead of drawing anything complicated, they just made a list with 7 pre-written ASCII pictures and picked the right one using stages[lives]. That's a really simple trick I didn't think of before.
+Rebuilding the whole display every time is easier than editing it. Instead of trying to change one letter in the middle of a string (which is actually kind of annoying in Python since strings can't be edited directly), they just rebuild the whole thing from scratch every round.
+Using a True/False variable to control a loop is a clean way to stop it. game_over starts as False and the loop keeps running until something sets it to True. That felt like a nice simple pattern I want to reuse.
+
+5. What was confusing at first?
+
+The line stages[lives] at the very end confused me. I didn't get how "lives" connects to picking the right picture.
+Did I figure it out? Yeah, after looking closer — lives starts at 6 and goes down by 1 every time you're wrong, and there are exactly 7 pictures in the stages list (positions 0 through 6). So when you have 6 lives left, it shows stages[6], which is just the empty gallows. When you have 0 lives left, it shows stages[0], the complete hangman. I had to actually count the stages myself to realize they lined up on purpose.
+Extra notes
+New stuff I looked up:
+some small things i noticed is that the developer of the code had some small inconsistencies is spacing and left a comment line inside the code, #print(chosen_word) probably they just left it there in case they need it again for the testing of the code 
