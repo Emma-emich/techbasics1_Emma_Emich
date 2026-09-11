@@ -30,5 +30,19 @@ What has been done:
 - I added the rest of the beginner levels (2-6) and both advanced levels. The difficulty increases gradually through maze size, wall density, dot count and enemy speed/count.
 
 
+Day3
+What has been done:
+- built the render.py: the maze, player and enemies as a styled grid of HTML/CSS elements, including CSS concepts --> CSS grid, pseudo-elements, clip-path, CSS custom properties
+- designed colored blocks - a blocky, retro arcade-style maze, with different wall colors per level, each enemy also getting an own color 
+- CSS for all the styling - the player, ghosts, the title screen, the price and decorations 
+- CSS techniques used: 
+- CSS grid to arrange every maze cell into an actual row/column layout 
+- ::after elements to draw the dot, pac-man and ghost shapes inside the cell boxes 
+- clip-path: polygon(...) to cut the pac-man's mouth shape out of a plain circle 
+- border-radius(50% 50% 8% 8%) to round only the top two corners of the ghost much and the bottom corners less
+- CSS custom properties (--wall-color, --ghost-color) so one single .wall/.ghost rule could produce 8 different level colors and 4 different ghost colors 
+- radial-gradient(pac-man's shading) and linear-gradient (the trophy cup) for soft, non-flat coloring 
+- box-shadow for the trophy's glow effect 
+
 AI Usage:
-- AI was used to help and explain concepts that we haven't touched upon in class yet, especially CSS concepts, also for debugging. 
+- AI was used to help and explain concepts that we haven't touched upon in class yet, especially CSS concepts, and also for debugging of the CSS layout issues encountered. 
