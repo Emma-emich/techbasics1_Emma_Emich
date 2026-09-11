@@ -42,7 +42,14 @@ What has been done:
 - border-radius(50% 50% 8% 8%) to round only the top two corners of the ghost much and the bottom corners less
 - CSS custom properties (--wall-color, --ghost-color) so one single .wall/.ghost rule could produce 8 different level colors and 4 different ghost colors 
 - radial-gradient(pac-man's shading) and linear-gradient (the trophy cup) for soft, non-flat coloring 
-- box-shadow for the trophy's glow effect 
+- box-shadow for the trophy's glow effect
+
+Day4
+What has been done:
+I built the main.py: the title screen, the playing screen (buttons, maze display, score), win/lose handling and screen navigation between all three
+This is where session_state was actually needed for the first time - streamlit reruns the entire script on every click, so session_state is what lets the game remember the player's position, score and current screen between clicks instead of resetting every time.
+Now the three previously separated files - gmae_logic.py, levels.py and render.py - were actually run together 
+  
 
 AI Usage:
 - AI was used to help and explain concepts that we haven't touched upon in class yet, especially CSS concepts, and also for debugging of the CSS layout issues encountered. 
