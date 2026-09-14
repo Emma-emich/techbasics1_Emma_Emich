@@ -1,7 +1,5 @@
-I had some issues with committing the coding history directly from pycharm, that I couldn't fix, which is why I'm uploading it directly here and document my progress step by step. 
-
 Documentation: 
-Maze Muncher: 
+Glow Chase: 
 A pac-man inspired game built with streamlit. The mazeis rendered as a grid of colored HTML/CSS blocks - no images used.
 
 How to run:
@@ -29,7 +27,6 @@ Day2
 What has been done:
 - I added the rest of the beginner levels (2-6) and both advanced levels. The difficulty increases gradually through maze size, wall density, dot count and enemy speed/count.
 
-
 Day3
 What has been done:
 - built the render.py: the maze, player and enemies as a styled grid of HTML/CSS elements, including CSS concepts --> CSS grid, pseudo-elements, clip-path, CSS custom properties
@@ -42,14 +39,21 @@ What has been done:
 - border-radius(50% 50% 8% 8%) to round only the top two corners of the ghost much and the bottom corners less
 - CSS custom properties (--wall-color, --ghost-color) so one single .wall/.ghost rule could produce 8 different level colors and 4 different ghost colors 
 - radial-gradient(pac-man's shading) and linear-gradient (the trophy cup) for soft, non-flat coloring 
-- box-shadow for the trophy's glow effect
+- box-shadow for the trophy's glow effect 
 
 Day4
 What has been done:
 I built the main.py: the title screen, the playing screen (buttons, maze display, score), win/lose handling and screen navigation between all three
 This is where session_state was actually needed for the first time - streamlit reruns the entire script on every click, so session_state is what lets the game remember the player's position, score and current screen between clicks instead of resetting every time.
 Now the three previously separated files - gmae_logic.py, levels.py and render.py - were actually run together 
-  
+
+Day5
+What has been done: 
+- full playtesting and difficulty rebalancing 
+I played through the levels, both beginner and advanced and the difficulty was way too high, so I:
+- trimmed the dot counts in the beginner levels, and delayed the fast chasing ghost to the later levels - only at level 5 now 
+- also i the advanced mode I trimmed the dot number and reduced the number of simultaneously fast chasing ghosts
+
 
 AI Usage:
 - AI was used to help and explain concepts that we haven't touched upon in class yet, especially CSS concepts, and also for debugging of the CSS layout issues encountered. 
