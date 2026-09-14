@@ -1,4 +1,6 @@
 def try_move(maze, row, col, direction):
+    new_row, new_col = row, col
+
     if direction == 'up':
         new_row = row - 1
     elif direction == 'down':
