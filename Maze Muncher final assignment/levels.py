@@ -1,7 +1,7 @@
 #6 BEGINNER LEVELS - progressing in difficulty
 BEGINNER_LEVELS = [
     {
-        "maze": [
+        "maze": [ #level 1
             "#########",
             "#.o.o.o.#",
             "#.###.#.#",
@@ -17,12 +17,12 @@ BEGINNER_LEVELS = [
 
     },
     {
-        "maze": [
+        "maze": [ #level 2
             "###########",
             "#o.o.#.o.o#",
-            "#.#.o.o.#.#",
+            "#.#.....#.#",
             "#o.#.#.#o.#",
-            "#.#.o.o.#.#",
+            "#.#.....#.#",
             "#o.o.#.o.o#",
             "###########",
         ],
@@ -32,10 +32,10 @@ BEGINNER_LEVELS = [
         ],
     },
     {
-        "maze": [
+        "maze": [ #level 3
             "#############",
             "#.o.o.o.o.o.#",
-            "#.#####.###.#",
+            "#.##.##.###.#",
             "#.#...#...#.#",
             "#.#.o.#.o.#.#",
             "#.#...#...#.#",
@@ -45,36 +45,36 @@ BEGINNER_LEVELS = [
         ],
         "player_start": (1,1),
         "enemies": [
-            {"start": (3,7), "moves_every_turn": True}, #chases the player now every turn
+            {"start": (3,7), "moves_every_turn": False}, #chases the player now every turn
         ],
     },
     {
-        "maze": [
+        "maze": [ #level 4
             "#############",
-            "#.o.#...#.o.#",
-            "#.#.#.#.#.#.#",
-            "#o#o..o#o..o#",
-            "#.###.#.###.#",
-            "#o..#.#.#..o#",
-            "###.#.#.#.###",
-            "#o.o#o.#o.o.#",
+            "#.o...o...o.#",
+            "###########.#",
+            "#.o...o...o.#",
+            "#.###########",
+            "#.o...o...o.#",
+            "###########.#",
+            "#.o...o...o.#",
             "#############",
         ],
         "player_start": (1,1),
         "enemies": [
-            {"start": (3,5), "moves_every_turn": True},
+            {"start": (3,5), "moves_every_turn": False},
         ],
     },
     {
-        "maze": [
+        "maze": [ #level 5
             "###############",
-            "#.o.o#.o.#.o.o#",
+            "#.o...#...#.o #",
             "#.###.#.#.###.#",
             "#.#..o...o.#..#",
             "#.#.#####.#.#.#",
             "#o..#...#..o#.#",
             "#.###.#.###.#.#",
-            "#.o.o.#.o.o.o.#",
+            "#.o...#.o...o.#",
             "###############",
         ],
         "player_start": (1,1),
@@ -86,13 +86,13 @@ BEGINNER_LEVELS = [
         #level 6: now there comes a second enemy - one is a chaser the other is a stationary trap
         "maze": [
             "###############",
-            "#.o.o.#.o.o.o.#",
+            "#.o...#.o...o.#",
             "#.###.#.#####.#",
-            "#o..#.o.o.#..o#",
+            "#o..#.o...#..o#",
             "###.#.###.#.###",
-            "#o..#.o.#..o..#",
+            "#o..#...#..o..#",
             "#.#####.#####.#",
-            "#.o.o.o.#.o.o.#",
+            "#.o...o.#.o...#",
             "###############",
         ],
         "player_start": (1,1),
@@ -105,14 +105,15 @@ BEGINNER_LEVELS = [
 
 #ADVANCED LEVELS
 
-ADVANCES_LEVELS = [
+ADVANCED_LEVELS = [
     {
         "maze": [
             "###################",
             "#.o.o.o.#.o.o.o.o.#",
             "#.#####.#.#######.#",
             "#.#...#...#.....#.#",
-            "#o..#.o.o.o.#..o#.#",
+            "#.#.#.#####.###.#.#",
+            "#o..#.o.o.o.#..o#.#"
             "#.#####.#.#####.#.#",
             "#o..o...#...o..o#.#",
             "###################",
@@ -121,14 +122,14 @@ ADVANCES_LEVELS = [
         "enemies": [
             {"start": (5,9), "moves_every_turn": True},
             {"start": (1,17), "moves_every_turn": True},
-            {"start": (7,1), "moves_every_turn": True},
+            {"start": (7,1), "moves_every_turn": False},
         ],
     },
     {
         "maze": [
             "###################",
-            "#o.#.o.o.o.o.o.#.o#",
-            "#.#.#####.#####.#.#",
+            "#o...o.o.o.o.o...o#",
+            "#.#.##.##.##.##.#.#",
             "#.#.#...#.#...#.#.#",
             "#o..#.o.#.#.o.#..o#",
             "#.#.#...#.#...#.#.#",
@@ -139,8 +140,8 @@ ADVANCES_LEVELS = [
         "player_start": (4,9),
         "enemies": [
             {"start": (1,1), "moves_every_turn": True},
-            {"start": (1,17), "moves_every_turn": True},
-            {"start": (7,1), "moves_every_turn": True},
+            {"start": (1,17), "moves_every_turn": False},
+            {"start": (7,1), "moves_every_turn": False},
             {"start": (7,17), "moves_every_turn": True},
         ],
     },
