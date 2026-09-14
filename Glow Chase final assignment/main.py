@@ -160,9 +160,10 @@ elif st.session_state.screen == "playing":
 elif st.session_state.screen == "prize":
     st.markdown(render_trophy(), unsafe_allow_html=True)
     prize_art = r"""
-    *   .   *   .   *   .   *
+    *   .   *   .   *  .  *
         YOU WIN A PRIZE!
-    *   .   *   .   '*   .  *
+    *   .   *   .   *  .  *
+
 """
     st.text(prize_art)
     st.markdown("<p style='text-align:center; ' >Thanks for playing Glow Chase!</p>", unsafe_allow_html=True)
