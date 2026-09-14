@@ -3,10 +3,10 @@ from levels import BEGINNER_LEVELS, ADVANCED_LEVELS
 from game_logic import (
     try_move, collect_dot_if_present, count_remaining_dots, move_enemy_toward_player, check_collision, check_win,
 )
-from render import render_maze_html, MAZE_CSS, RETRO_STYLE, get_wall_color, render_title_decorations, render_trophy
+from render import render_maze_html, wrap_maze_panel, render_stat_badges, MAZE_CSS, RETRO_STYLE, get_wall_color, render_title_decorations, render_trophy
 
 #browser tab title/icon and css blocks get injected into the page
-st.set_page_config(page_title="Maze Muncher", page_icon="\U00001F47B", layout="centered")
+st.set_page_config(page_title="Maze Muncher", page_icon="\U0001F47B", layout="centered")
 st.markdown(RETRO_STYLE, unsafe_allow_html=True)
 st.markdown(MAZE_CSS, unsafe_allow_html=True)
 
@@ -77,8 +77,8 @@ if st.session_state.screen == "title":
     title_html = (
         '<div class="title-wrap">'
         + render_title_decorations()
-        + "<h1 style='test-align.center;'>WELCOME TO<br>MAZE MUNCHER</h1>"
-        + "<p style='text-align.center;' >-- SELECT YOUR LEVEL --</p>"
+        + "<h1 style='text-align:center;'>WELCOME TO<br>GLOW CHASE</h1>"
+        + "<p style='text-align:center;' >-- SELECT YOUR LEVEL --</p>"
         +"</div>"
     )
     st.markdown(title_html, unsafe_allow_html=True)
@@ -100,15 +100,15 @@ if st.session_state.screen == "title":
 #playing screen
 elif st.session_state.screen == "playing":
     levels = get_current_levels()
-    st.markdown(f"<h3>Level {st.session_state.current_level_index + 1} / {len(levels)}</h3>", unsafe_allow_html=True)
+    st.markdown(f"<h3 style='text_align:center;'>Level {st.session_state.current_level_index + 1} / {len(levels)}</h3>", unsafe_allow_html=True)
 
     #turns the current game state into html maze
     maze_html = render_maze_html(
         st.session_state.maze,st.session_state.player_row,st.session_state.player_col, st.session_state.enemies,
         wall_color=get_wall_color(st.session_state.current_level_index),
     )
-    st.markdown(maze_html, unsafe_allow_html=True)
-    st.write(f"Score: {st.session_state.score} | Dots left: {count_remaining_dots(st.session_state.maze)}")
+    st.markdown(f"<div style='text-align:center:'>{wrap_maze_panel(maze_html)}</div", unsafe_allow_html=True)
+    st.markdown(render_stat_badges(st.session_state.score, count_remaining_dots(st.session_state.maze)), unsafe_allow_html=True)
 
     if st.session_state.game_over_message == "You lose!":
         st.error("Caught! Game over.")
@@ -140,7 +140,7 @@ elif st.session_state.screen == "playing":
                 handle_move("up")
                 st.rerun() #refresh immediately so the move shows up right away
 
-        left_col, _, right_col, _ = st.columns(3)
+        left_col, _, right_col = st.columns(3)
         with left_col:
             if st.button("Left", use_container_width=True):
                 handle_move("left")
@@ -165,8 +165,7 @@ elif st.session_state.screen == "prize":
     *   .   *   .   '*   .  *
 """
     st.text(prize_art)
-    st.markdown("<p style='text-align:center; ' >Thanks for playing Maze Muncher!</p>", unsafe_allow_html=True)
-    if st.button("Back to Title"):
+    st.markdown("<p style='text-align:center; ' >Thanks for playing Glow Chase!</p>", unsafe_allow_html=True)
+    if st.button("Back to Title Screen"):
         st.session_state.screen = "title"
         st.rerun()
-
