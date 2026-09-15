@@ -12,7 +12,7 @@ BEGINNER_LEVELS = [
         ],
         "player_start": (1,1),
         "enemies": [
-            {"start": (3,5), "moves_every_turn": False},
+            {"start": (3,5), "moves_every_turn": False},#slow and easy level, ghost chasing the player slowly  
         ],
 
     },
@@ -45,7 +45,7 @@ BEGINNER_LEVELS = [
         ],
         "player_start": (1,1),
         "enemies": [
-            {"start": (3,7), "moves_every_turn": False}, #chases the player now every turn
+            {"start": (3,7), "moves_every_turn": False}, 
         ],
     },
     {
@@ -98,12 +98,12 @@ BEGINNER_LEVELS = [
         "player_start": (1,1),
         "enemies": [
             {"start": (5,7), "moves_every_turn":True}, #chaser
-            {"start": (3,12), "moves_every_turn": False}, #stationary trap
+            {"start": (3,12), "moves_every_turn": False, "is_trap"_ True}, #stationary trap
         ],
     },
 ]
 
-#ADVANCED LEVELS
+#ADVANCED LEVELS - bigger maze, multiple ghosts chasing the player 
 
 ADVANCED_LEVELS = [
     {
